@@ -36,7 +36,7 @@
             if (isset($_SESSION['user']) && $_SESSION['log'] == 1) { ?>
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item ">
-                        <a class="nav-link" href="<?php echo BASE_URL . "/index.php/candidats"; ?>">
+                        <a class="nav-link" href="<?php echo BASE_URL . "/candidats"; ?>">
                             Liste des candidats
                         </a>
                     </li>
@@ -46,7 +46,7 @@
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="<?php echo BASE_URL . "/index.php/languageNumber"; ?>">
+                        <a class="nav-link" href="<?php echo BASE_URL . "/languageNumber"; ?>">
                             Nombre de personnes par langages
                         </a>
                     </li>
@@ -55,7 +55,7 @@
                 </ul>
                 <ul class="navbar-nav ">
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo BASE_URL . "/index.php/logout"; ?>">
+                        <a class="nav-link" href="<?php echo BASE_URL . "/logout"; ?>">
                             Deconnexion
                         </a>
                     </li>
@@ -66,7 +66,7 @@
                 </ul>
                 <ul class="navbar-nav ">
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo BASE_URL . "/index.php/login"; ?>">
+                        <a class="nav-link" href="<?php echo BASE_URL . "/login"; ?>">
                             Login
                         </a>
                     </li>

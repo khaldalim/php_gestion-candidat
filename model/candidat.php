@@ -17,6 +17,27 @@ function getAllCandidats($pdo)
     return $statement->fetchAll(PDO::FETCH_ASSOC);
 }
 
+function getAllCandidatsId($pdo)
+{
+    $query = "SELECT cand_id FROM candidat";
+    $statement = $pdo->prepare($query);
+    $statement->execute();
+    $allId = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    for ($i = 0; $i < count($allId); $i++) {
+        $arrayId[] = $allId[$i]['cand_id'];
+    }
+    return $arrayId;
+}
+
+function getcandidatCVById($id, $pdo)
+{
+    $query = "SELECT cand_cv FROM candidat WHERE cand_id = :id";
+    $statement = $pdo->prepare($query);
+    $statement->execute([':id' => $id]);
+    return $statement->fetchAll(PDO::FETCH_ASSOC);
+}
+
 function getCandidatById($id, $pdo)
 
     /**
@@ -85,7 +106,7 @@ function insertCandidatwithLanguages($candName, $candEmail, $candDateDispo, $can
     ]);
 
     if ($result) {
-        $uploaddir = '../public/upload/';
+        $uploaddir = '../upload/';
         $uploadfile = $uploaddir . basename($_FILES['candCV']['name']);
 
 
@@ -153,9 +174,8 @@ function updateCandidatwithLanguages($candName, $candEmail, $candDateDispo, $can
     ]);
 
     if ($result) {
-        $uploaddir = '../public/upload/';
+        $uploaddir = '../upload/';
         $uploadfile = $uploaddir . basename($_FILES['candCV']['name']);
-
 
 
         $sqldelete = "DELETE FROM candidat_language WHERE cand_id = :candId";
@@ -177,7 +197,7 @@ function updateCandidatwithLanguages($candName, $candEmail, $candDateDispo, $can
             }
         }
 
-        if ($resultTrue){
+        if ($resultTrue) {
             if (move_uploaded_file($_FILES['candCV']['tmp_name'], $uploadfile)) {
                 echo "upload ok";
             } else {

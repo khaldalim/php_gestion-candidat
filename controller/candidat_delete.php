@@ -6,13 +6,15 @@ if (isset($_SESSION['user']) && $_SESSION['log'] == 1) {
 
     if (isset($_GET['id'])) {
         $idCandidat = $_GET['id'];
+        $arrayIdCand = getAllCandidatsId($pdo);
 
-
-        $code = deleteCandidatwithById($_GET['id'], $pdo);
-
-
-        header("Location: candidats?delete=$code");
-
+        if (in_array($idCandidat, $arrayIdCand)) {
+            $code = deleteCandidatwithById($_GET['id'], $pdo);
+            header("Location: candidats?delete=$code");
+        } else {
+            http_response_code(404);
+            require '../view/404.php';
+        }
     } else {
         header('Location: candidats');
     }

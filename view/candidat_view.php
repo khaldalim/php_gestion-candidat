@@ -18,7 +18,7 @@ setlocale(LC_TIME, "fr_FR");
 <h6>Message :</h6>
 <p><?php echo $candidat['cand_motivation']; ?></p>
 <p>
-    <?php echo "<a target=\"_blank\" href=\"/upload/{$candidat['cand_cv']}\">Voir le CV</a>" ?>
+    <?php echo "<a target=\"_blank\" href=\"/candidat/cv?id={$candidat['cand_id']}\">Voir le CV</a>" ?>
 </p>
 
 <?php

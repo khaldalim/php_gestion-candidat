@@ -37,7 +37,10 @@ if (isset($_GET['delete'])) {
         <td>" . $candidat['cand_name'] . "</td>
         <td>{$candidat['cand_email']}</td>
         <td>{$candidat['cand_dateDispo']}</td>
-        <td><a target='_blank' href='/upload/{$candidat['cand_cv']}'>CV</a></td>
+        <td>
+       
+        <a target='_blank' href='/candidat/cv?id={$candidat['cand_id']}'>CV</a>
+        </td>
 
         <td>
             <a class='btn btn-info' href ='viewCandidat?id={$candidat['cand_id']}'> Afficher</a >
