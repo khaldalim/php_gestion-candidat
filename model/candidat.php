@@ -88,14 +88,10 @@ function insertCandidatwithLanguages($candName, $candEmail, $candDateDispo, $can
         $uploaddir = '../public/upload/';
         $uploadfile = $uploaddir . basename($_FILES['candCV']['name']);
 
-        if (move_uploaded_file($_FILES['candCV']['tmp_name'], $uploadfile)) {
-
-        } else {
-            $errors['upload'] = "erreur lors de l'upload du fichier";
-        }
 
         $last_id = $pdo->lastInsertId();
 
+        $resultTrue = true;
         foreach ($arrayLang as $lang) {
             $sql2 = "INSERT INTO candidat_language( cand_id, lang_id)  
                             VALUES (:candId, :langId)";
@@ -104,8 +100,18 @@ function insertCandidatwithLanguages($candName, $candEmail, $candDateDispo, $can
                 ':candId' => $last_id,
                 ':langId' => $lang,
             ]);
+            if (!$result2) {
+                $resultTrue = false;
+                break;
+            }
         }
+        if ($resultTrue) {
+            if (move_uploaded_file($_FILES['candCV']['tmp_name'], $uploadfile)) {
 
+            } else {
+                $errors['upload'] = "erreur lors de l'upload du fichier";
+            }
+        }
         return true;
     } else {
         return false;
@@ -150,16 +156,13 @@ function updateCandidatwithLanguages($candName, $candEmail, $candDateDispo, $can
         $uploaddir = '../public/upload/';
         $uploadfile = $uploaddir . basename($_FILES['candCV']['name']);
 
-        if (move_uploaded_file($_FILES['candCV']['tmp_name'], $uploadfile)) {
-            echo "upload ok";
-        } else {
-            echo "probleme upload";
-        }
+
 
         $sqldelete = "DELETE FROM candidat_language WHERE cand_id = :candId";
         $statementDelete = $pdo->prepare($sqldelete);
         $resultDelete = $statementDelete->execute([':candId' => $id]);
 
+        $resultTrue = true;
         foreach ($arrayLang as $lang) {
             $sql2 = "INSERT INTO candidat_language( cand_id, lang_id)  
                             VALUES (:candId, :langId)";
@@ -168,7 +171,20 @@ function updateCandidatwithLanguages($candName, $candEmail, $candDateDispo, $can
                 ':candId' => $id,
                 ':langId' => $lang,
             ]);
+            if (!$result2) {
+                $resultTrue = false;
+                break;
+            }
         }
+
+        if ($resultTrue){
+            if (move_uploaded_file($_FILES['candCV']['tmp_name'], $uploadfile)) {
+                echo "upload ok";
+            } else {
+                echo "probleme upload";
+            }
+        }
+
         return true;
     } else {
         return false;

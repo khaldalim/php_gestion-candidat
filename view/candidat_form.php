@@ -23,7 +23,7 @@ if (isset($message)) {
     <fieldset>
         <div class="form-group row">
             <label for="candName" class="col-sm-10 col-form-label">Nom :</label><br>
-            <input class="form-control" type="text" id="candName" name="candName" value="<?php echo $candName ?>"
+            <input class="form-control" type="text" minlength="3" id="candName" name="candName" value="<?php echo $candName ?>"
                    required>
         </div>
 
@@ -37,7 +37,7 @@ if (isset($message)) {
         <div class="form-group row">
             <label for="candDispo" class="col-sm-10 col-form-label">Date de disponibilité :</label><br>
             <input class="form-control" id="candDispo" type="date" name="candDispo" required
-                   value="<?php echo $candDispo ?>">
+                   value="<?php echo $candDispo ?>" pattern="\d{4}-\d{2}-\d{2}">
         </div>
 
         <div class="form-group row">
