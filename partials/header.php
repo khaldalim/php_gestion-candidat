@@ -13,6 +13,11 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
 </head>
+<style>
+    tr, td {
+        text-align: center;
+    }
+</style>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
@@ -27,21 +32,22 @@
             <?php
 
             //base du site pour gerer les urls
-            define('BASE_URL', 'http://'.$_SERVER['SERVER_NAME']);
+            define('BASE_URL', 'http://' . $_SERVER['SERVER_NAME']);
             if (isset($_SESSION['user']) && $_SESSION['log'] == 1) { ?>
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item ">
                         <a class="nav-link" href="<?php echo BASE_URL . "/index.php/candidats"; ?>">
-                            liste des candidats
+                            Liste des candidats
                         </a>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link" href="<?php echo BASE_URL; ?>">
                             Ajouter une candidature
                         </a>
-                    </li><li class="nav-item ">
-                        <a class="nav-link" href="<?php echo BASE_URL."/index.php/languageNumber"; ?>">
-                            Nomre de personnes par langages
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="<?php echo BASE_URL . "/index.php/languageNumber"; ?>">
+                            Nombre de personnes par langages
                         </a>
                     </li>
 
@@ -61,7 +67,7 @@
                 <ul class="navbar-nav ">
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo BASE_URL . "/index.php/login"; ?>">
-                            login
+                            Login
                         </a>
                     </li>
                 </ul>

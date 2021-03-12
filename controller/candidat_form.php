@@ -23,14 +23,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $candDispo = filter_input(INPUT_POST, 'candDispo');
     $candMotiv = filter_input(INPUT_POST, 'candMotiv');
     $candCV = filter_input(INPUT_POST, 'candCV');
-    $selectedLang = $_POST['candLang'];
-    $arrayLang = $_POST['candLang'];
-
-
-
+    $arrayLang = filter_input(INPUT_POST, 'candLang', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+    $selectedLang = $arrayLang;
 
 
     $errors = [];
+
+    require '../control/candidat_control.php';
 
     if (empty($errors)) {
         $success = insertCandidatwithLanguages($candName, $candEmail, $candDispo, $candMotiv, $candCV, $arrayLang, $pdo);
@@ -44,6 +43,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         } else {
             $message = "<span style='color : red; font-weight: bold'>Probleme lors de l'envoi</span>";
         }
+    } else {
+        $message = "<span style='color : red; font-weight: bold'>Erreur</span>";
     }
 }
 

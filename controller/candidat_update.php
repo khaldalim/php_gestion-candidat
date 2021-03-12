@@ -34,6 +34,7 @@ if (isset($_SESSION['user']) && $_SESSION['log'] == 1) {
             $arrayLang = $_POST['candLang'];
 
             $errors = [];
+            require '../control/candidat_control.php';
 
             if (empty($errors)) {
                 $success = updateCandidatwithLanguages($candName, $candEmail, $candDispo, $candMotiv, $candCV, $arrayLang, $idCandidat, $pdo);
@@ -43,6 +44,9 @@ if (isset($_SESSION['user']) && $_SESSION['log'] == 1) {
                 } else {
                     $message = "<span style='color : #ff0000; font-weight: bold'>Probleme lors de la mise à jour</span>";
                 }
+            }
+            else {
+                $message = "<span style='color : red; font-weight: bold'>Erreur</span>";
             }
         }
 
