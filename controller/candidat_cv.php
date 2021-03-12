@@ -11,7 +11,7 @@ if (isset($_SESSION['user']) && $_SESSION['log'] == 1) {
         $name = getcandidatCVById($idCandidat, $pdo);
 
 
-        $filename = "../upload/" . $name[0]['cand_cv'];
+        $filename = "../uploads/" . $name[0]['cand_cv'];
         if (in_array($idCandidat, $arrayIdCand)) {
 
             $file_parts = pathinfo($name[0]['cand_cv']);

@@ -106,7 +106,7 @@ function insertCandidatwithLanguages($candName, $candEmail, $candDateDispo, $can
     ]);
 
     if ($result) {
-        $uploaddir = '../upload/';
+        $uploaddir = '../uploads/';
         $uploadfile = $uploaddir . basename($_FILES['candCV']['name']);
 
 
@@ -174,7 +174,7 @@ function updateCandidatwithLanguages($candName, $candEmail, $candDateDispo, $can
     ]);
 
     if ($result) {
-        $uploaddir = '../upload/';
+        $uploaddir = '../uploads/';
         $uploadfile = $uploaddir . basename($_FILES['candCV']['name']);
 
 
